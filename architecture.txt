@@ -1,38 +1,30 @@
-Project: LedgerFlow Enterprise Identity Integration
+Autumn Solutions - LedgerFlow Identity Architecture
 
-Business:
-Autumn Solutions integrates LedgerFlow, a fictional third-party expense management SaaS application, with Microsoft Entra ID.
+SAML 2.0 Federation
+User
+  -> LedgerFlow custom SAML service provider
+  -> Microsoft Entra ID authentication
+  -> signed SAML assertion
+  -> LedgerFlow validates signing certificate, issuer, audience, NameID, and claims
 
-SAML Federation:
-User -> Microsoft Entra ID -> SAML Assertion -> SAML Toolkit Validation
+The Microsoft Entra SAML Toolkit was used only as an independent troubleshooting
+and validation harness. It was not the production destination in the completed lab.
 
-The Microsoft Entra SAML Toolkit serves only as a validation harness for the LedgerFlow SAML federation configuration.
+OpenID Connect and OAuth 2.0
+LedgerFlow OIDC client
+  -> Microsoft Entra ID authorize endpoint
+  -> authorization code
+  -> token exchange using PKCE
+  -> ID token for authentication
+  -> delegated access token
+  -> Microsoft Graph /me using User.Read
 
-OIDC Authentication:
-User -> LedgerFlow -> Microsoft Entra ID -> Authorization Code + PKCE -> ID Token -> LedgerFlow
+SCIM 2.0 Provisioning
+Microsoft Entra provisioning service
+  -> HTTPS through a temporary Cloudflare Tunnel
+  -> custom LedgerFlow SCIM API
+  -> persistent user store
 
-OAuth Authorization:
-LedgerFlow -> Delegated Access Token (User.Read) -> Microsoft Graph -> /me
-
-SCIM Provisioning:
-Microsoft Entra Provisioning Service
--> HTTPS
--> Cloudflare Quick Tunnel
--> LedgerFlow SCIM API
--> Persistent Local User Store
-
-SCIM Lifecycle:
-Assign -> Create
-Attribute Change -> Update
-Unassign -> Disable
-
-Identity Controls:
-- Single-tenant authentication
-- SAML claims and NameID mapping
-- Group-based application assignment
-- OIDC Authorization Code + PKCE
-- OAuth delegated least-privilege access
-- SCIM attribute mapping
-- Assignment-based provisioning scope
-- Automated create, update, and disable lifecycle
-- Secrets stored outside source code
+Assignment creates a user.
+Attribute changes update the user.
+Unassignment disables the user by setting active=false.

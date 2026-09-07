@@ -1,0 +1,160 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 960 1145"
+  role="img"
+  aria-labelledby="svg-title svg-desc"
+>
+<title id="svg-title">IAM-02 LedgerFlow Identity Architecture</title>
+<desc id="svg-desc">LedgerFlow architecture covering SAML federation, OpenID Connect and OAuth authorization code with PKCE, Microsoft Graph delegated access, and SCIM provisioning.</desc>
+
+<style>
+.bg {
+  fill: #161b21;
+}
+.panel {
+  fill: #12161b;
+  stroke: #655236;
+  stroke-width: 1;
+}
+.node {
+  fill: #1b1916;
+  stroke: #9c7433;
+  stroke-width: 1.2;
+}
+.title {
+  fill: #efcf88;
+  font: 700 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-anchor: middle;
+}
+.label {
+  fill: #f2eee7;
+  font: 700 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-anchor: middle;
+}
+.sub {
+  fill: #a89f92;
+  font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-anchor: middle;
+}
+.note {
+  fill: #a89f92;
+  font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.arrow {
+  stroke: #d4aa55;
+  stroke-width: 2.5;
+  fill: none;
+}
+</style>
+
+<defs>
+  <marker
+    id="arrowhead"
+    markerWidth="8"
+    markerHeight="8"
+    refX="6"
+    refY="3"
+    orient="auto"
+  >
+    <path d="M0,0 L0,6 L6,3 z" fill="#d4aa55"/>
+  </marker>
+</defs>
+<rect class="bg" x="0" y="0" width="960" height="1145"/>
+
+    <rect class="panel" x="35" y="30" width="425" height="800"/>
+    <text class="title" x="247.5" y="66">
+      SAML 2.0 FEDERATION
+    </text>
+  <rect class="node" x="85" y="95" width="325" height="88"/><text class="label" x="247.5" y="128"><tspan x="247.5">User</tspan></text><text class="sub" x="247.5" y="153"><tspan x="247.5">Starts sign-in at LedgerFlow</tspan></text><line
+    class="arrow"
+    x1="247.5"
+    y1="183"
+    x2="247.5"
+    y2="211"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="85" y="219" width="325" height="88"/><text class="label" x="247.5" y="252"><tspan x="247.5">LedgerFlow SAML SP</tspan></text><text class="sub" x="247.5" y="277"><tspan x="247.5">Custom service provider</tspan></text><line
+    class="arrow"
+    x1="247.5"
+    y1="307"
+    x2="247.5"
+    y2="335"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="85" y="343" width="325" height="88"/><text class="label" x="247.5" y="376"><tspan x="247.5">Microsoft Entra ID</tspan></text><text class="sub" x="247.5" y="401"><tspan x="247.5">Authenticates user</tspan></text><line
+    class="arrow"
+    x1="247.5"
+    y1="431"
+    x2="247.5"
+    y2="459"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="85" y="467" width="325" height="105"/><text class="label" x="247.5" y="500"><tspan x="247.5">Signed SAML Assertion</tspan></text><text class="sub" x="247.5" y="525"><tspan x="247.5">Issuer · audience · NameID · claims</tspan></text><line
+    class="arrow"
+    x1="247.5"
+    y1="572"
+    x2="247.5"
+    y2="600"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="85" y="608" width="325" height="105"/><text class="label" x="247.5" y="641"><tspan x="247.5">LedgerFlow Validation</tspan></text><text class="sub" x="247.5" y="666"><tspan x="247.5">Signing certificate · issuer · audience · claims</tspan></text>
+    <rect class="panel" x="500" y="30" width="425" height="800"/>
+    <text class="title" x="712.5" y="66">
+      OIDC + OAUTH 2.0 WITH PKCE
+    </text>
+  <rect class="node" x="550" y="95" width="325" height="88"/><text class="label" x="712.5" y="128"><tspan x="712.5">User</tspan></text><text class="sub" x="712.5" y="153"><tspan x="712.5">Starts LedgerFlow OIDC sign-in</tspan></text><line
+    class="arrow"
+    x1="712.5"
+    y1="183"
+    x2="712.5"
+    y2="207"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="550" y="215" width="325" height="88"/><text class="label" x="712.5" y="248"><tspan x="712.5">Microsoft Entra ID</tspan></text><text class="sub" x="712.5" y="273"><tspan x="712.5">Authorize endpoint</tspan></text><line
+    class="arrow"
+    x1="712.5"
+    y1="303"
+    x2="712.5"
+    y2="327"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="550" y="335" width="325" height="88"/><text class="label" x="712.5" y="368"><tspan x="712.5">Authorization Code</tspan></text><text class="sub" x="712.5" y="393"><tspan x="712.5">Returned to LedgerFlow</tspan></text><line
+    class="arrow"
+    x1="712.5"
+    y1="423"
+    x2="712.5"
+    y2="447"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="550" y="455" width="325" height="88"/><text class="label" x="712.5" y="488"><tspan x="712.5">Token Exchange</tspan></text><text class="sub" x="712.5" y="513"><tspan x="712.5">Code + PKCE verifier</tspan></text><line
+    class="arrow"
+    x1="712.5"
+    y1="543"
+    x2="712.5"
+    y2="567"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="550" y="575" width="325" height="105"/><text class="label" x="712.5" y="608"><tspan x="712.5">ID Token + Access Token</tspan></text><text class="sub" x="712.5" y="633"><tspan x="712.5">Authentication + delegated authorization</tspan></text><line
+    class="arrow"
+    x1="712.5"
+    y1="680"
+    x2="712.5"
+    y2="704"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="550" y="712" width="325" height="88"/><text class="label" x="712.5" y="745"><tspan x="712.5">Microsoft Graph /me</tspan></text><text class="sub" x="712.5" y="770"><tspan x="712.5">Delegated User.Read request</tspan></text>
+    <rect class="panel" x="35" y="860" width="890" height="255"/>
+    <text class="title" x="480" y="896">
+      SCIM 2.0 PROVISIONING
+    </text>
+  <rect class="node" x="70" y="925" width="250" height="115"/><text class="label" x="195" y="958"><tspan x="195">Entra Provisioning Service</tspan></text><text class="sub" x="195" y="983"><tspan x="195">Assignment-based scope</tspan></text><line
+    class="arrow"
+    x1="320"
+    y1="982"
+    x2="343"
+    y2="982"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="355" y="925" width="250" height="115"/><text class="label" x="480" y="958"><tspan x="480">LedgerFlow SCIM API</tspan></text><text class="sub" x="480" y="983"><tspan x="480">HTTPS via temporary Cloudflare Tunnel</tspan><tspan x="480" dy="19">Custom Node.js endpoint</tspan></text><line
+    class="arrow"
+    x1="605"
+    y1="982"
+    x2="628"
+    y2="982"
+    marker-end="url(#arrowhead)"
+  /><rect class="node" x="640" y="925" width="250" height="115"/><text class="label" x="765" y="958"><tspan x="765">Persistent User Store</tspan></text><text class="sub" x="765" y="983"><tspan x="765">Create · update · disable</tspan></text>
+    <text class="note" x="58" y="1082">
+      Assign = create · attribute change = update · unassign = disable (active=false).
+    </text>
+  
+</svg>
