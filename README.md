@@ -270,3 +270,14 @@ Autumn Solutions successfully demonstrated centralized SaaS identity integration
 The final environment supports:
 
 Custom LedgerFlow SAML federation → OIDC authentication → OAuth delegated API authorization → SCIM Create / Update / Disable
+
+
+## Public Portfolio
+
+The completed project is also published as a recruiter-facing case study:
+
+- https://brendendiggs.com/projects/iam-02-enterprise-sso-federation.html
+
+Public portfolio evidence:
+
+18. `18-IAM-02-Public-Portfolio-Case-Study.png`
