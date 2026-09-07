@@ -1,0 +1,38 @@
+Project: LedgerFlow Enterprise Identity Integration
+
+Business:
+Autumn Solutions integrates LedgerFlow, a fictional third-party expense management SaaS application, with Microsoft Entra ID.
+
+SAML Federation:
+User -> Microsoft Entra ID -> SAML Assertion -> SAML Toolkit Validation
+
+The Microsoft Entra SAML Toolkit serves only as a validation harness for the LedgerFlow SAML federation configuration.
+
+OIDC Authentication:
+User -> LedgerFlow -> Microsoft Entra ID -> Authorization Code + PKCE -> ID Token -> LedgerFlow
+
+OAuth Authorization:
+LedgerFlow -> Delegated Access Token (User.Read) -> Microsoft Graph -> /me
+
+SCIM Provisioning:
+Microsoft Entra Provisioning Service
+-> HTTPS
+-> Cloudflare Quick Tunnel
+-> LedgerFlow SCIM API
+-> Persistent Local User Store
+
+SCIM Lifecycle:
+Assign -> Create
+Attribute Change -> Update
+Unassign -> Disable
+
+Identity Controls:
+- Single-tenant authentication
+- SAML claims and NameID mapping
+- Group-based application assignment
+- OIDC Authorization Code + PKCE
+- OAuth delegated least-privilege access
+- SCIM attribute mapping
+- Assignment-based provisioning scope
+- Automated create, update, and disable lifecycle
+- Secrets stored outside source code

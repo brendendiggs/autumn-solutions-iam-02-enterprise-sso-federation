@@ -1,0 +1,29 @@
+[
+  {
+    "schemas": [
+      "urn:ietf:params:scim:schemas:core:2.0:User",
+      "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
+    ],
+    "externalId": "alex.morgan",
+    "userName": "alex.morgan@AutumnSolutionsoutlook.onmicrosoft.com",
+    "active": "False",
+    "displayName": "Alex Morgan",
+    "emails": [
+      {
+        "primary": true,
+        "type": "work",
+        "value": "alex.morgan@AutumnSolutionsoutlook.onmicrosoft.com"
+      }
+    ],
+    "meta": {
+      "resourceType": "User",
+      "created": "2026-09-05T22:25:09.969Z",
+      "lastModified": "2026-09-05T22:34:44.436Z"
+    },
+    "title": "Senior IAM Engineer",
+    "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+      "department": "Information Technology"
+    },
+    "id": "e100b272-451d-4f85-9ece-c7095f1d607c"
+  }
+]
