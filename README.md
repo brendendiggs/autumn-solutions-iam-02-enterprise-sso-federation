@@ -15,6 +15,13 @@ The goal was to centralize authentication, automate account lifecycle management
 
 ---
 
+
+## Video Walkthrough
+
+▶ **[Watch the 2–3 minute project walkthrough](https://youtu.be/HQC_Rncv77A)**
+
+See the SAML, OIDC, OAuth, and automated provisioning implementation demonstrated end to end.
+
 ## Architecture
 
 ### SAML
